@@ -2,6 +2,12 @@
 // RIO HAVEN POUSADA HOSTEL — MAIN JAVASCRIPT v1.0
 // =====================================================================
 
+import './components/Header.js';
+import './components/MobileMenu.js';
+import './components/Footer.js';
+import './components/WaFloat.js';
+import './components/MobileCta.js';
+
 const WA = '5521978730606';
 
 function waLink(msg) {
@@ -27,7 +33,7 @@ function initHeader() {
 
 // ── MOBILE MENU ──────────────────────────────────────────────────────
 function initMobileMenu() {
-  const btn  = document.querySelector('.header__hamburger');
+  const btn = document.querySelector('.header__hamburger');
   const menu = document.querySelector('.mobile-menu');
   if (!btn || !menu) return;
 
@@ -79,7 +85,7 @@ function initFAQ() {
 
 // ── ACCOMMODATION FILTER ─────────────────────────────────────────────
 function initFilter() {
-  const tabs  = document.querySelectorAll('.filter-tab');
+  const tabs = document.querySelectorAll('.filter-tab');
   const cards = document.querySelectorAll('[data-cat]');
   if (!tabs.length) return;
 
@@ -96,6 +102,148 @@ function initFilter() {
   });
 }
 
+// ── PHOTO GALLERY ─────────────────────────────────────────────────────
+function initGallery() {
+  const items = [...document.querySelectorAll('[data-gallery]')]
+    .filter(item => item.offsetParent !== null);
+  if (!items.length) return;
+
+  const photos = [];
+  const seen = new Set();
+  items.forEach(item => {
+    const img = item.querySelector('img');
+    const src = img?.getAttribute('src') || '';
+    if (!src || seen.has(src)) return;
+    seen.add(src);
+    photos.push({
+      src: img?.getAttribute('src') || '',
+      alt: img?.getAttribute('alt') || '',
+      caption: item.querySelector('span')?.textContent || img?.getAttribute('alt') || ''
+    });
+  });
+
+  if (!photos.length) return;
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'gallery-lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.innerHTML = `
+    <div class="gallery-lightbox__dialog">
+      <div class="gallery-lightbox__frame">
+        <img src="" alt="">
+        <button class="gallery-lightbox__close" type="button" aria-label="Fechar galeria">x</button>
+        <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" type="button" aria-label="Foto anterior">&lsaquo;</button>
+        <button class="gallery-lightbox__nav gallery-lightbox__nav--next" type="button" aria-label="Proxima foto">&rsaquo;</button>
+      </div>
+      <div class="gallery-lightbox__caption"></div>
+    </div>
+  `;
+  document.body.appendChild(lightbox);
+
+  const photo = lightbox.querySelector('img');
+  const caption = lightbox.querySelector('.gallery-lightbox__caption');
+  let current = 0;
+
+  const render = () => {
+    photo.src = photos[current].src;
+    photo.alt = photos[current].alt;
+    caption.textContent = `${photos[current].caption} (${current + 1}/${photos.length})`;
+  };
+
+  const open = index => {
+    current = index;
+    render();
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const close = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  const move = step => {
+    current = (current + step + photos.length) % photos.length;
+    render();
+  };
+
+  items.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      const src = item.querySelector('img')?.getAttribute('src') || '';
+      const photoIndex = photos.findIndex(photo => photo.src === src);
+      open(photoIndex >= 0 ? photoIndex : Number(item.dataset.index || index));
+    });
+  });
+
+  lightbox.querySelector('.gallery-lightbox__close').addEventListener('click', close);
+  lightbox.querySelector('.gallery-lightbox__nav--prev').addEventListener('click', () => move(-1));
+  lightbox.querySelector('.gallery-lightbox__nav--next').addEventListener('click', () => move(1));
+  lightbox.addEventListener('click', event => {
+    if (event.target === lightbox) close();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (!lightbox.classList.contains('open')) return;
+    if (event.key === 'Escape') close();
+    if (event.key === 'ArrowLeft') move(-1);
+    if (event.key === 'ArrowRight') move(1);
+  });
+}
+
+// ── ACCOMMODATION CAROUSEL ────────────────────────────────────────────
+function initAccommodationCarousel() {
+  const carousel = document.querySelector('.accom-carousel');
+  if (!carousel) return;
+
+  const track = carousel.querySelector('.accom-carousel__track');
+  const slides = [...carousel.querySelectorAll('.accom-carousel__slide')];
+  const dotsWrap = carousel.querySelector('.accom-carousel__dots');
+  const prev = carousel.querySelector('.accom-carousel__nav--prev');
+  const next = carousel.querySelector('.accom-carousel__nav--next');
+  if (!track || !slides.length || !dotsWrap) return;
+
+  let current = 0;
+  const dots = slides.map((_, index) => {
+    const dot = document.createElement('button');
+    dot.className = 'accom-carousel__dot';
+    dot.type = 'button';
+    dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
+    dot.addEventListener('click', () => goTo(index));
+    dotsWrap.appendChild(dot);
+    return dot;
+  });
+
+  function goTo(index) {
+    current = (index + slides.length) % slides.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === current));
+    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
+  }
+
+  prev?.addEventListener('click', () => goTo(current - 1));
+  next?.addEventListener('click', () => goTo(current + 1));
+
+  // ── Swipe touch support ──
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  carousel.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].clientX;
+    const delta = touchStartX - touchEndX;
+    if (Math.abs(delta) > SWIPE_THRESHOLD) {
+      goTo(delta > 0 ? current + 1 : current - 1);
+    }
+  }, { passive: true });
+
+  goTo(0);
+}
+
 // ── RESERVATION FORM ─────────────────────────────────────────────────
 function initReservationForm() {
   const form = document.querySelector('#form-reserva');
@@ -108,7 +256,7 @@ function initReservationForm() {
       .map(c => c.value).join(', ') || 'Nenhuma';
 
     const msg =
-`Olá! Me chamo ${g('r-nome')} e vim pelo site da Rio Haven. 🌊
+      `Olá! Me chamo ${g('r-nome')} e vim pelo site da Rio Haven. 🌊
 
 📅 Check-in: ${g('r-checkin')}
 📅 Check-out: ${g('r-checkout')}
@@ -134,7 +282,7 @@ function initEventsForm() {
     const g = id => (form.querySelector('#' + id)?.value || '').trim();
 
     const msg =
-`Olá! Vim pela página de eventos da Rio Haven. Me chamo ${g('e-nome')}.
+      `Olá! Vim pela página de eventos da Rio Haven. Me chamo ${g('e-nome')}.
 
 🎪 Evento: ${g('e-evento')}
 📅 Entrada: ${g('e-checkin')}
@@ -185,7 +333,7 @@ function initTransitions() {
   document.querySelectorAll('a[href]').forEach(a => {
     const href = a.getAttribute('href') || '';
     if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')
-        || href.startsWith('tel') || href.includes('wa.me') || href === '') return;
+      || href.startsWith('tel') || href.includes('wa.me') || href === '') return;
 
     a.addEventListener('click', ev => {
       ev.preventDefault();
@@ -217,16 +365,26 @@ function initCounters() {
 
 // ── INIT ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  initHeader();
-  initMobileMenu();
-  initAnimations();
-  initFAQ();
-  initFilter();
-  initReservationForm();
-  initEventsForm();
-  initWAFloat();
-  initMobileCTA();
-  initActiveNav();
-  initTransitions();
-  initCounters();
+  Promise.all([
+    customElements.whenDefined('app-header'),
+    customElements.whenDefined('app-mobile-menu'),
+    customElements.whenDefined('app-footer'),
+    customElements.whenDefined('app-wa-float'),
+    customElements.whenDefined('app-mobile-cta')
+  ]).then(() => {
+    initHeader();
+    initMobileMenu();
+    initAnimations();
+    initFAQ();
+    initFilter();
+    initAccommodationCarousel();
+    initGallery();
+    initReservationForm();
+    initEventsForm();
+    initWAFloat();
+    initMobileCTA();
+    initActiveNav();
+    initTransitions();
+    initCounters();
+  });
 });

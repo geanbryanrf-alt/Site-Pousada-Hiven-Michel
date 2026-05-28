@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservas e Contato | Rio Haven Pousada Hostel</title>
+  <meta name="description" content="Faça sua reserva ou entre em contato com a Rio Haven pelo WhatsApp de forma rápida e prática.">
+  <meta property="og:title" content="Reservas e Contato | Rio Haven Pousada Hostel">
+  <meta property="og:description" content="Faça sua reserva ou entre em contato com a Rio Haven pelo WhatsApp de forma rápida e prática.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo-rio-haven.png" type="image/png">
+</head>
+<body>
+
+  <!-- ═══════ HEADER & MENU ═══════ -->
+  <app-header></app-header>
+  <app-mobile-menu></app-mobile-menu>
+<!-- ═══════ HERO ═══════ -->
+  <section class="page-hero">
+    <div class="page-hero__bg" style="background:var(--navy)"></div>
+    <div class="page-hero__dots"></div>
+    <div class="container page-hero__content anim">
+      <div class="page-hero__badge">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 0 0 .917.918l4.462-1.494A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.582l-.386-.235-2.661.89.89-2.659-.256-.406A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        <span>Reservas e Contato</span>
+      </div>
+      <h1 class="page-hero__title">Faça sua reserva de forma simples e rápida</h1>
+      <p class="page-hero__subtitle">Preencha o formulário abaixo ou fale diretamente conosco pelo WhatsApp. O atendimento é rápido, humano e sem burocracia.</p>
+    </div>
+  </section>
+
+  <!-- ═══════ CONTEÚDO PRINCIPAL ═══════ -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col-layout anim">
+        
+        <!-- Formulário -->
+        <div>
+          <span class="label">Consultar Disponibilidade</span>
+          <h2 class="section-title">Pedido de Reserva</h2>
+          <p class="section-sub" style="margin-bottom:2rem">Preencha os dados e você será redirecionado para o nosso WhatsApp com as informações prontas para nossa equipe.</p>
+          
+          <form id="form-reserva" class="form-card" autocomplete="off">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="r-nome" class="form-label">Nome completo</label>
+                <input type="text" id="r-nome" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-row--2">
+              <div class="form-group">
+                <label for="r-checkin" class="form-label">Check-in</label>
+                <input type="date" id="r-checkin" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label for="r-checkout" class="form-label">Check-out</label>
+                <input type="date" id="r-checkout" class="form-input" required>
+              </div>
+            </div>
+            <div class="form-row--2">
+              <div class="form-group">
+                <label for="r-hospedes" class="form-label">Quantidade de hóspedes</label>
+                <select id="r-hospedes" class="form-select" required>
+                  <option value="">Selecione</option>
+                  <option value="1">1 pessoa</option>
+                  <option value="2">2 pessoas</option>
+                  <option value="3">3 pessoas</option>
+                  <option value="4">4 pessoas</option>
+                  <option value="5+">5 ou mais</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="r-acomo" class="form-label">Preferência de Acomodação</label>
+                <select id="r-acomo" class="form-select" required>
+                  <option value="Não decidi ainda">Não decidi ainda</option>
+                  <option value="Suítes Privativas">Suítes Privativas</option>
+                  <option value="Loft">Loft</option>
+                  <option value="Com Garagem">Quarto com Garagem</option>
+                  <option value="Compartilhado">Compartilhado (Hostel)</option>
+                  <option value="Econômica">Opções Econômicas</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="r-motivo" class="form-label">Motivo da viagem</label>
+                <select id="r-motivo" class="form-select">
+                  <option value="Lazer / Férias">Lazer / Férias</option>
+                  <option value="Trabalho">Trabalho</option>
+                  <option value="Eventos no Riocentro / Shows">Eventos no Riocentro / Shows</option>
+                  <option value="Outro">Outro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <label class="form-label" style="display:block;margin-bottom:.5rem;">Interesse em Passeios (Opcional)</label>
+              <div class="form-checks">
+                <label class="form-check"><input type="checkbox" name="exp" value="Jetski"> Passeio de Jetski</label>
+                <label class="form-check"><input type="checkbox" name="exp" value="Roteiro Praias Selvagens"> Roteiro Cachoeira/Praias</label>
+                <label class="form-check"><input type="checkbox" name="exp" value="Cristo/Mirantes"> Roteiro Cristo Redentor</label>
+                <label class="form-check"><input type="checkbox" name="exp" value="Quadriciclo"> Passeio de Quadriciclo</label>
+                <label class="form-check"><input type="checkbox" name="exp" value="Aluguel Bicicleta"> Aluguel de Bicicleta</label>
+              </div>
+            </div>
+
+            <div class="form-row" style="margin-top:1.25rem;">
+              <div class="form-group">
+                <label for="r-msg" class="form-label">Mensagem extra (opcional)</label>
+                <textarea id="r-msg" class="form-textarea" rows="3" placeholder="Dúvidas, pedidos especiais..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--whatsapp btn--full" style="margin-top:1.5rem;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 0 0 .917.918l4.462-1.494A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.582l-.386-.235-2.661.89.89-2.659-.256-.406A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              Enviar pelo WhatsApp
+            </button>
+          </form>
+        </div>
+
+        <!-- Info / Contato -->
+        <div>
+          <span class="label">Fale Direto</span>
+          <h2 class="section-title">Canais de Atendimento</h2>
+          <p class="section-sub" style="margin-bottom:2rem">Nosso atendimento é centralizado no WhatsApp para maior agilidade e proximidade com você.</p>
+          
+          <div style="display:flex;flex-direction:column;gap:1.5rem;margin-bottom:3rem">
+            <div style="display:flex;align-items:flex-start;gap:1rem">
+              <div style="width:48px;height:48px;background:var(--ocean);color:white;border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg viewBox="0 0 24 24" fill="currentColor" style="width:24px;height:24px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 0 0 .917.918l4.462-1.494A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.582l-.386-.235-2.661.89.89-2.659-.256-.406A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:1.1rem;font-weight:700;color:var(--navy)">WhatsApp (Reservas e Dúvidas)</h3>
+                <a href="https://wa.me/5521978730606" target="_blank" style="font-size:1.2rem;font-weight:600;color:var(--ocean);text-decoration:none">+55 21 97873-0606</a>
+              </div>
+            </div>
+            
+            <div style="display:flex;align-items:flex-start;gap:1rem">
+              <div style="width:48px;height:48px;background:var(--sand);color:var(--navy);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <h3 style="font-size:1.1rem;font-weight:700;color:var(--navy)">Localização</h3>
+                <p style="color:var(--graphite);font-size:.9rem">Camorim — Rio de Janeiro, RJ</p>
+                <a href="localizacao.html" style="font-size:.85rem;font-weight:600;color:var(--ocean);text-decoration:underline">Ver página de localização</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:1.5rem;border-radius:var(--r-md);border:1px solid var(--border);background:white">
+            <h3 style="font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" style="width:20px;height:20px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Horários da Pousada
+            </h3>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:.75rem">
+              <span style="color:var(--graphite);font-weight:600">Check-in</span>
+              <span style="color:var(--navy)">A partir das 14:00</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:.75rem;margin-bottom:.75rem">
+              <span style="color:var(--graphite);font-weight:600">Check-out</span>
+              <span style="color:var(--navy)">Até as 11:00</span>
+            </div>
+            <p style="font-size:.8rem;color:var(--text-muted);margin-top:1rem">Atenção: Horários flexíveis podem ser combinados dependendo da disponibilidade. Consulte-nos.</p>
+          </div>
+          
+          <div style="margin-top:2rem">
+            <a href="politicas.html" style="font-size:.9rem;font-weight:600;color:var(--ocean);text-decoration:underline">Ler políticas de cancelamento e hospedagem da Rio Haven</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ COMPONENTES FIXOS ═══════ -->
+  <app-wa-float></app-wa-float>
+  <app-mobile-cta></app-mobile-cta>
+  <app-footer></app-footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
