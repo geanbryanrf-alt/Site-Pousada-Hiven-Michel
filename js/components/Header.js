@@ -1,10 +1,12 @@
+import logoUrl from '../../images/logo-rio-haven.webp';
+
 export class AppHeader extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header class="header transparent" id="main-header">
         <div class="header__inner">
           <a href="/index.html" class="header__logo">
-            <img src="/images/logo-rio-haven.webp" alt="Rio Haven" class="header__logo-img">
+            <img src="${logoUrl}" alt="Rio Haven" class="header__logo-img">
             <div class="header__logo-text">
               <span class="header__logo-name">Rio Haven</span>
               <span class="header__logo-sub">Pousada &amp; Hostel</span>

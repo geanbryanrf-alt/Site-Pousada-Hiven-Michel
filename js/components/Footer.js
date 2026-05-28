@@ -1,3 +1,5 @@
+import logoUrl from '../../images/logo-rio-haven.webp';
+
 export class AppFooter extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
@@ -6,7 +8,7 @@ export class AppFooter extends HTMLElement {
           <div class="footer__top">
             <div>
               <div class="footer__logo">
-                <img src="images/logo-rio-haven.webp" alt="Rio Haven" class="footer__logo-img">
+                <img src="${logoUrl}" alt="Rio Haven" class="footer__logo-img">
                 <div>
                   <span class="footer__logo-name">Rio Haven</span><br>
                   <span class="footer__logo-sub">Pousada &amp; Hostel</span>
