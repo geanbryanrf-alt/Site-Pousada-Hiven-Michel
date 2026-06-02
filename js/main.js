@@ -193,55 +193,55 @@ function initGallery() {
 
 // ── ACCOMMODATION CAROUSEL ────────────────────────────────────────────
 function initAccommodationCarousel() {
-  const carousel = document.querySelector('.accom-carousel');
-  if (!carousel) return;
+  document.querySelectorAll('.accom-carousel').forEach(carousel => {
+    const track = carousel.querySelector('.accom-carousel__track');
+    const slides = [...carousel.querySelectorAll('.accom-carousel__slide')];
+    const dotsWrap = carousel.querySelector('.accom-carousel__dots');
+    const prev = carousel.querySelector('.accom-carousel__nav--prev');
+    const next = carousel.querySelector('.accom-carousel__nav--next');
+    if (!track || !slides.length || !dotsWrap) return;
 
-  const track = carousel.querySelector('.accom-carousel__track');
-  const slides = [...carousel.querySelectorAll('.accom-carousel__slide')];
-  const dotsWrap = carousel.querySelector('.accom-carousel__dots');
-  const prev = carousel.querySelector('.accom-carousel__nav--prev');
-  const next = carousel.querySelector('.accom-carousel__nav--next');
-  if (!track || !slides.length || !dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    let current = 0;
+    const dots = slides.map((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'accom-carousel__dot';
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
+      dot.addEventListener('click', () => goTo(index));
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
 
-  let current = 0;
-  const dots = slides.map((_, index) => {
-    const dot = document.createElement('button');
-    dot.className = 'accom-carousel__dot';
-    dot.type = 'button';
-    dot.setAttribute('aria-label', `Ver foto ${index + 1}`);
-    dot.addEventListener('click', () => goTo(index));
-    dotsWrap.appendChild(dot);
-    return dot;
-  });
-
-  function goTo(index) {
-    current = (index + slides.length) % slides.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
-    slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === current));
-    dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
-  }
-
-  prev?.addEventListener('click', () => goTo(current - 1));
-  next?.addEventListener('click', () => goTo(current + 1));
-
-  // ── Swipe touch support ──
-  let touchStartX = 0;
-  let touchEndX = 0;
-  const SWIPE_THRESHOLD = 50;
-
-  carousel.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  carousel.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].clientX;
-    const delta = touchStartX - touchEndX;
-    if (Math.abs(delta) > SWIPE_THRESHOLD) {
-      goTo(delta > 0 ? current + 1 : current - 1);
+    function goTo(index) {
+      current = (index + slides.length) % slides.length;
+      track.style.transform = `translateX(-${current * 100}%)`;
+      slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === current));
+      dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === current));
     }
-  }, { passive: true });
 
-  goTo(0);
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+
+    // ── Swipe touch support ──
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50;
+
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', e => {
+      touchEndX = e.changedTouches[0].clientX;
+      const delta = touchStartX - touchEndX;
+      if (Math.abs(delta) > SWIPE_THRESHOLD) {
+        goTo(delta > 0 ? current + 1 : current - 1);
+      }
+    }, { passive: true });
+
+    goTo(0);
+  });
 }
 
 // ── RESERVATION FORM ─────────────────────────────────────────────────
@@ -261,7 +261,7 @@ function initReservationForm() {
 📅 Check-in: ${g('r-checkin')}
 📅 Check-out: ${g('r-checkout')}
 👥 Hóspedes: ${g('r-hospedes')}
-🛏️ Acomodação: ${g('r-acomo')}
+🛏️ Preferência de hospedagem: ${g('r-acomo')}
 ✈️ Motivo da viagem: ${g('r-motivo')}
 🎯 Experiências de interesse: ${experiences}
 ${g('r-msg') ? `📝 Mensagem: ${g('r-msg')}` : ''}
@@ -332,7 +332,7 @@ function initTransitions() {
 
   document.querySelectorAll('a[href]').forEach(a => {
     const href = a.getAttribute('href') || '';
-    if (href.startsWith('#') || href.startsWith('http') || href.startsWith('mailto')
+    if (href.startsWith('#') || href.includes('#') || href.startsWith('http') || href.startsWith('mailto')
       || href.startsWith('tel') || href.includes('wa.me') || href === '') return;
 
     a.addEventListener('click', ev => {

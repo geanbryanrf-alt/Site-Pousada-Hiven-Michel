@@ -15,8 +15,8 @@ export class AppHeader extends HTMLElement {
 
           <nav class="header__nav" id="desktop-nav">
             <a href="/index.html" class="header__nav-link">Início</a>
-            <a href="/acomodacoes.html" class="header__nav-link">Acomodações</a>
             <a href="/experiencias.html" class="header__nav-link">Experiências</a>
+            <a href="/fotos.html" class="header__nav-link">Fotos</a>
             <a href="/eventos-riocentro.html" class="header__nav-link">Eventos</a>
             <a href="/localizacao.html" class="header__nav-link">Localização</a>
             <a href="/reservas.html" class="header__nav-link">Contato</a>

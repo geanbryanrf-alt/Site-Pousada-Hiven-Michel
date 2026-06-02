@@ -273,6 +273,8 @@ h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02
 .accom-carousel__dots{display:flex;gap:.4rem;justify-content:center;margin-top:.875rem}
 .accom-carousel__dot{width:8px;height:8px;border:0;border-radius:var(--r-full);background:rgba(8,29,48,.22);cursor:pointer;padding:0;transition:var(--ease)}
 .accom-carousel__dot.active{width:26px;background:var(--ocean)}
+.photo-carousel .accom-carousel__slide img{object-fit:contain;background:var(--navy)}
+.photo-carousel .accom-carousel__slide::after{background:linear-gradient(to top,rgba(8,29,48,.45),rgba(8,29,48,0) 32%)}
 .acom-page-gallery .filter-tabs,
 .acom-page-gallery #acomodacoes-grid{display:none}
 .acom-page-gallery .info-banner{max-width:1040px;margin-left:auto;margin-right:auto}
@@ -466,6 +468,54 @@ h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02
 .bg-quad  {background:linear-gradient(135deg,#2d1a00,#8B5E00,#F5B51B)}
 .bg-bike  {background:linear-gradient(135deg,#0a2a0a,#1a5a1a,#2d8b2d)}
 .bg-lancha{background:linear-gradient(135deg,#061a30,#0e4a6e,#119BC5)}
+
+/* ===== MASONRY GALLERY ===== */
+.masonry-gallery {
+  column-count: 1;
+  column-gap: 1rem;
+  padding: 1rem 0;
+}
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  transition: var(--ease);
+}
+.masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.masonry-item:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+.masonry-item:hover img {
+  transform: scale(1.05);
+}
+.masonry-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 29, 48, 0);
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+.masonry-item:hover::after {
+  background: rgba(8, 29, 48, 0.1);
+}
+
+@media(min-width: 640px) {
+  .masonry-gallery { column-count: 2; }
+}
+@media(min-width: 900px) {
+  .masonry-gallery { column-count: 3; }
+}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}

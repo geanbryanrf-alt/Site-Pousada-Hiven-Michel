@@ -3,8 +3,8 @@ export class AppMobileMenu extends HTMLElement {
     this.innerHTML = `
       <nav class="mobile-menu" id="mobile-menu">
         <a href="/index.html" class="mobile-menu__link">Início</a>
-        <a href="/acomodacoes.html" class="mobile-menu__link">Acomodações</a>
         <a href="/experiencias.html" class="mobile-menu__link">Experiências</a>
+        <a href="/fotos.html" class="mobile-menu__link">Fotos</a>
         <a href="/eventos-riocentro.html" class="mobile-menu__link">Eventos</a>
         <a href="/localizacao.html" class="mobile-menu__link">Localização</a>
         <a href="/reservas.html" class="mobile-menu__link">Contato</a>

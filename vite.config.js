@@ -10,6 +10,7 @@ export default defineConfig({
         comodidades: resolve(__dirname, 'comodidades.html'),
         eventos: resolve(__dirname, 'eventos-riocentro.html'),
         experiencias: resolve(__dirname, 'experiencias.html'),
+        fotos: resolve(__dirname, 'fotos.html'),
         localizacao: resolve(__dirname, 'localizacao.html'),
         politicas: resolve(__dirname, 'politicas.html'),
         reservas: resolve(__dirname, 'reservas.html')

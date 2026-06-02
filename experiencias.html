@@ -4,13 +4,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Passeios e Experiências no Rio | Rio Haven</title>
-  <meta name="description" content="Jetski, quadriciclo, praias, mirantes e experiências para complementar sua hospedagem no Rio de Janeiro.">
+  <meta name="description" content="Jetski, lancha, quadriciclo, day use, praias, mirantes e a programação completa para sua experiência no Rio de Janeiro.">
   <meta property="og:title" content="Passeios e Experiências no Rio | Rio Haven">
-  <meta property="og:description" content="Jetski, quadriciclo, praias, mirantes e experiências para complementar sua hospedagem no Rio de Janeiro.">
+  <meta property="og:description" content="Jetski, lancha, quadriciclo, day use, praias, mirantes e a programação completa para sua experiência no Rio de Janeiro.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="images/hero-bg.webp">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo-rio-haven.png" type="image/png">
+  <style>
+    /* Estilos específicos para a nova página de experiências */
+    .quick-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 4rem;
+    }
+    .quick-card {
+      background: var(--white);
+      border-radius: var(--r-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px solid rgba(0, 0, 0, 0.08); /* Contorno para destacar */
+      color: var(--navy);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .quick-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--ocean);
+      color: var(--ocean);
+    }
+    .quick-card__icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--ocean-light);
+      color: var(--ocean);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .quick-card__icon svg { width: 20px; height: 20px; }
+
+    .schedule-day {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      height: 100%;
+    }
+    .schedule-day__title {
+      font-size: 1.5rem;
+      color: var(--ocean);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .schedule-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .schedule-list li {
+      display: flex;
+      gap: 1rem;
+      color: var(--graphite);
+      font-size: 0.95rem;
+    }
+    .schedule-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--graphite);
+    }
+    .feature-list li svg {
+      width: 20px;
+      height: 20px;
+      color: var(--ocean);
+      flex-shrink: 0;
+    }
+
+    .exp-hero {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      aspect-ratio: 21/9;
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) {
+      .exp-hero { aspect-ratio: 16/9; padding: 1.5rem; }
+      .quick-cards { grid-template-columns: repeat(2, 1fr); margin-top: -2rem; }
+    }
+    .exp-hero img {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .exp-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+    }
+    .exp-hero__content {
+      position: relative;
+      z-index: 3;
+      color: white;
+    }
+    .exp-hero__tag {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+    .exp-hero__title {
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      margin: 0;
+      line-height: 1.1;
+    }
+  </style>
 </head>
 <body>
 
@@ -18,33 +173,73 @@
   <app-header></app-header>
   <app-mobile-menu></app-mobile-menu>
 
-<!-- ═══════ HERO DA PÁGINA ═══════ -->
+  <!-- ═══════ HERO DA PÁGINA ═══════ -->
   <section class="page-hero">
     <div class="page-hero__bg" style="background:linear-gradient(140deg,var(--navy) 0%,#09405c 55%,rgba(73,186,218,.18) 100%)"></div>
     <div class="page-hero__dots"></div>
     <div class="container page-hero__content anim">
       <div class="page-hero__badge">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-        <span>Roteiros Especiais</span>
+        <span>Experiência Completa</span>
       </div>
-      <h1 class="page-hero__title">Passeios e experiências para viver o melhor do Rio</h1>
-      <p class="page-hero__subtitle">Além da hospedagem, a Rio Haven conecta você a aventuras, praias, mirantes e experiências inesquecíveis pela cidade.</p>
+      <h1 class="page-hero__title">Roteiros, lazer e experiências para viver o melhor do Rio</h1>
+      <p class="page-hero__subtitle" style="max-width: 800px;">Na Rio Haven, sua estadia pode ser muito mais do que hospedagem. Aqui você encontra conforto, lazer, passeios pela cidade, atividades para toda a família e experiências personalizadas para aproveitar o Rio de Janeiro de um jeito único.</p>
+      <p class="page-hero__subtitle" style="font-size:0.9rem;opacity:0.9">Seja para descansar na pousada, curtir a natureza, viver aventuras ou montar um roteiro completo com amigos, casal ou família, nossa equipe ajuda você a organizar tudo pelo WhatsApp.</p>
+      
+      <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20montar%20minha%20experi%C3%AAncia%20na%20Rio%20Haven." target="_blank" rel="noopener" class="btn btn--primary btn--lg" style="margin-top:1.5rem">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Montar minha experiência pelo WhatsApp
+      </a>
     </div>
   </section>
 
-  <!-- ═══════ EXPERIÊNCIAS ═══════ -->
-  <section class="section">
+  <!-- ═══════ CARDS RÁPIDOS ═══════ -->
+  <div class="container">
+    <div class="quick-cards anim">
+      <a href="#aventura" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 22h20L12 2z"/></svg></div>
+        Aventura
+      </a>
+      <a href="#roteiros" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        Roteiros
+      </a>
+      <a href="#day-use" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
+        Day Use
+      </a>
+      <a href="#lazer" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14s2-2 4-2 4 2 6 2 4-2 6-2 4 2 6 2M3 20s2-2 4-2 4 2 6 2 4-2 6-2 4 2 6 2"/></svg></div>
+        Lazer na Pousada
+      </a>
+      <a href="#familia" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        Família
+      </a>
+      <a href="#casais" class="quick-card">
+        <div class="quick-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        Casais
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════ EXPERIÊNCIAS DE AVENTURA ═══════ -->
+  <section class="section" id="aventura">
     <div class="container">
-      
+      <div class="text-center anim" style="margin-bottom:3rem">
+        <span class="label">Experiências de aventura</span>
+        <h2 class="section-title">Para quem quer viver o Rio com adrenalina</h2>
+        <p class="section-sub" style="margin:0 auto">A Rio Haven conecta você a experiências para aproveitar praias, trilhas, mirantes e paisagens inesquecíveis do Rio de Janeiro.</p>
+      </div>
+
       <!-- Jetski -->
       <div class="grid grid-2 anim" style="align-items:center;margin-bottom:6rem;gap:4rem">
         <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xl)">
           <img src="images/exp-jetski.webp" alt="Passeio de Jetski Barra da Tijuca" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3">
         </div>
         <div>
-          <span class="label">Aventura no Mar</span>
-          <h2 class="section-title">Passeio de Jetski na Barra da Tijuca</h2>
-          <p class="section-sub" style="margin-bottom:1.5rem">Explore cenários incríveis do Rio de Janeiro em um passeio partindo do Canal da Barra, passando pela Praia da Joaninha e, nos trajetos mais longos, chegando até as deslumbrantes Ilhas Tijucas!</p>
+          <h3 class="section-title" style="font-size:2rem">Passeio de Jetski na Barra da Tijuca</h3>
+          <p class="section-sub" style="margin-bottom:1.5rem">Explore cenários incríveis partindo do Canal da Barra, passando pela Praia da Joaninha e, nos trajetos mais longos, chegando até as Ilhas Tijucas.</p>
           
           <div style="margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;color:var(--navy)">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--ocean)" stroke-width="2" style="width:20px;height:20px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -70,7 +265,7 @@
                 <td class="price-hi">R$ 950</td>
               </tr>
               <tr>
-                <td rowspan="2" style="background:var(--white);font-weight:600;color:var(--navy)">Cliente conduzindo<br><span style="font-size:.75rem;color:var(--text-muted);font-weight:400">Sujeito a regras abaixo</span></td>
+                <td rowspan="2" style="background:var(--white);font-weight:600;color:var(--navy)">Cliente conduzindo<br><span style="font-size:.75rem;color:var(--text-muted);font-weight:400">Requer habilitação e autorização</span></td>
                 <td>30 minutos</td>
                 <td class="price-hi">R$ 900</td>
               </tr>
@@ -80,145 +275,226 @@
               </tr>
             </tbody>
           </table>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-bottom:2rem">Para condução pelo cliente, é necessário possuir habilitação, autorização e seguir as instruções do marinheiro responsável.</p>
 
-          <div class="info-banner" style="margin-top:0;margin-bottom:2rem;padding:.75rem 1rem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-            <p style="font-size:.8rem">Para condução pelo cliente, é necessário possuir habilitação, autorização e seguir rigorosamente as instruções do marinheiro responsável.</p>
-          </div>
-
-          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20o%20passeio%20de%20jetski." target="_blank" rel="noopener" class="btn btn--primary">
-            Consultar Jetski no WhatsApp
+          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20consultar%20disponibilidade%20para%20o%20passeio%20de%20jetski." target="_blank" rel="noopener" class="btn btn--outline-ocean">
+            Consultar passeio de jetski
           </a>
         </div>
       </div>
 
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:6rem">
-
-      <!-- Cristo e Mirantes -->
+      <!-- Lancha -->
       <div class="grid grid-2 anim" style="align-items:center;margin-bottom:6rem;gap:4rem">
         <div style="order:2;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xl)">
-          <img src="images/exp-cristo.webp" alt="Cristo Redentor ao amanhecer com vista panorâmica do Rio de Janeiro" loading="lazy" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;display:block">
+          <img src="images/exp-lancha.png" alt="Passeio de Lancha no Rio de Janeiro" loading="lazy" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;display:block">
         </div>
         <div style="order:1">
-          <span class="label">Roteiro Completo</span>
-          <h2 class="section-title">Cristo Redentor + Pedra da Gávea + Pedra do Pontal</h2>
-          <p class="section-sub" style="margin-bottom:1.5rem">Amanhecer no Cristo Redentor e vistas espetaculares da Zona Oeste em um roteiro pensado para quem quer conhecer alguns dos cenários mais impressionantes do Rio de Janeiro.</p>
+          <h3 class="section-title" style="font-size:2rem">Passeio de Lancha no Rio de Janeiro</h3>
+          <p class="section-sub" style="margin-bottom:1.5rem">Uma experiência ideal para casais, grupos e famílias que desejam aproveitar o Rio pelo mar, com paisagens incríveis e momentos especiais.</p>
           
-          <ul style="margin-bottom:2rem;display:flex;flex-direction:column;gap:.75rem">
-            <li style="display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--graphite)">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--ocean-light);color:var(--ocean);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="20 6 9 17 4 12"/></svg></div>
-              7h — Início indicado no Cristo Redentor
-            </li>
-            <li style="display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--graphite)">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--ocean-light);color:var(--ocean);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="20 6 9 17 4 12"/></svg></div>
-              10h — Visitação ao Pontal
-            </li>
-            <li style="display:flex;align-items:center;gap:.75rem;font-size:.9rem;color:var(--graphite)">
-              <div style="width:24px;height:24px;border-radius:50%;background:var(--ocean-light);color:var(--ocean);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="20 6 9 17 4 12"/></svg></div>
-              Saída e roteiro exato a confirmar com a equipe
-            </li>
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Lancha para até 10 pessoas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Contratação mínima: 3 horas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Saídas pela Barra da Tijuca ou Marina da Glória</li>
           </ul>
 
-          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20roteiro%20Cristo%20Redentor%20e%20Mirantes." target="_blank" rel="noopener" class="btn btn--outline-ocean">
-            Consultar este roteiro
+          <div style="background:var(--ocean-light);padding:1rem;border-radius:var(--r-md);margin-bottom:2rem">
+            <div style="font-weight:600;color:var(--navy);margin-bottom:0.25rem">A partir de R$ 550 / hora</div>
+            <p style="font-size:.8rem;color:var(--graphite);margin:0">Disponibilidade, rota, duração final e condições do mar são confirmadas pela equipe.</p>
+          </div>
+
+          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20de%20lancha." target="_blank" rel="noopener" class="btn btn--outline-ocean">
+            Consultar passeio de lancha
           </a>
         </div>
       </div>
 
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:6rem">
-
-      <!-- Praias Selvagens -->
-      <div class="grid grid-2 anim" style="align-items:center;margin-bottom:6rem;gap:4rem">
-        <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xl)">
-          <img src="images/exp-praias.webp" alt="Praias Selvagens do Rio" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3">
-        </div>
-        <div>
-          <span class="label">Belezas Naturais</span>
-          <h2 class="section-title">Cachoeira, Praias Selvagens e Mirante</h2>
-          <p class="section-sub" style="margin-bottom:1.5rem">Um passeio pensado para quem deseja descobrir natureza exuberante, praias preservadas e vistas marcantes do Rio de Janeiro. Conheça a Zona Oeste mais selvagem e preservada.</p>
-          
-          <div class="praias-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-bottom:2rem">
-            <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--navy);font-weight:600;padding:.5rem;background:var(--ocean-light);border-radius:var(--r-sm)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Cachoeira de Vargem Grande
-            </div>
-            <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--navy);font-weight:600;padding:.5rem;background:var(--ocean-light);border-radius:var(--r-sm)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Praia de Grumari
-            </div>
-            <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--navy);font-weight:600;padding:.5rem;background:var(--ocean-light);border-radius:var(--r-sm)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Prainha
-            </div>
-            <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--navy);font-weight:600;padding:.5rem;background:var(--ocean-light);border-radius:var(--r-sm)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Praia do Secreto
-            </div>
-            <div style="display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--navy);font-weight:600;padding:.5rem;background:var(--ocean-light);border-radius:var(--r-sm)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Mirante do Caeté
-            </div>
-          </div>
-
-          <div class="info-banner" style="margin-top:0;margin-bottom:2rem;padding:.75rem 1rem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            <p style="font-size:.8rem">Saída prevista às 11h da Rio Haven, sujeita a confirmação de disponibilidade.</p>
-          </div>
-
-          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20das%20Praias%20Selvagens." target="_blank" rel="noopener" class="btn btn--outline-ocean">
-            Consultar este passeio
-          </a>
-        </div>
-      </div>
-
-      <hr style="border:none;border-top:1px solid var(--border);margin-bottom:6rem">
-
-      <!-- Quadriciclo & Bicicleta (Cards menores lado a lado) -->
+      <!-- Quadriciclo e Parapente (Lado a Lado) -->
       <div class="grid grid-2 anim" style="gap:2rem">
         <!-- Quadriciclo -->
         <div class="accom-card" style="box-shadow:var(--shadow-lg)">
           <div class="accom-card__img" style="aspect-ratio:16/9">
-            <img src="images/exp-quadriciclo.webp" alt="Passeio de Quadriciclo em trilha na natureza" loading="lazy" style="width:100%;height:100%;object-fit:cover">
-            <span class="accom-card__badge" style="background:var(--gold)">Quadriciclo</span>
+            <img src="images/exp-quadriciclo.webp" alt="Passeio de Quadriciclo" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <span class="accom-card__badge" style="background:var(--gold)">Aventura</span>
           </div>
           <div class="accom-card__body">
             <h3 class="accom-card__name">Passeio de Quadriciclo</h3>
-            <p class="accom-card__desc">Aventura e liberdade em trajetos guiados, dunas e trilhas da região. Para quem busca adrenalina com segurança.</p>
+            <p class="accom-card__desc">Aventura e liberdade em trajetos guiados pela região, com contato com natureza, praias e paisagens marcantes.</p>
             
             <table class="price-table" style="margin-bottom:1rem">
               <tr><td>30 minutos</td><td class="price-hi" style="text-align:right">R$ 120</td></tr>
               <tr><td>60 minutos</td><td class="price-hi" style="text-align:right">R$ 210</td></tr>
               <tr><td>120 minutos</td><td class="price-hi" style="text-align:right">R$ 400</td></tr>
             </table>
-            <p style="font-size:.7rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.4">Observação: Cada minuto excedente poderá gerar cobrança adicional de R$3, conforme regra informada pela operação.</p>
+            <p style="font-size:.7rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.4">Também há programação de quadriciclo pela Praia da Macumba, horários específicos: R$150/pessoa (mediante grupo).</p>
 
-            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20de%20quadriciclo." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar Quadriciclo</a>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20o%20passeio%20de%20quadriciclo." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar quadriciclo</a>
           </div>
         </div>
 
-        <!-- Bicicleta -->
+        <!-- Parapente e Asa Delta -->
         <div class="accom-card" style="box-shadow:var(--shadow-lg)">
           <div class="accom-card__img" style="aspect-ratio:16/9">
-            <img src="images/exp-bicicletas.webp" alt="Casal pedalando na ciclovia da Barra da Tijuca" loading="lazy" style="width:100%;height:100%;object-fit:cover">
-            <span class="accom-card__badge" style="background:#2d8b2d;color:white">Aluguel</span>
+            <img src="images/exp-parapente.png" alt="Voo de Parapente" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <span class="accom-card__badge" style="background:var(--ocean);color:white">No ar</span>
           </div>
           <div class="accom-card__body">
-            <h3 class="accom-card__name">Aluguel de Bicicletas</h3>
-            <p class="accom-card__desc">Explore a região com mais liberdade e praticidade. Ideal para curtas distâncias ou passeios pela orla e ciclovias.</p>
+            <h3 class="accom-card__name">Parapente e Asa Delta</h3>
+            <p class="accom-card__desc">Para quem deseja viver uma experiência inesquecível no alto, com visual privilegiado do Rio de Janeiro.</p>
             
             <div style="margin-bottom:1rem">
               <table class="price-table" style="font-size:.85rem;margin-bottom:.5rem">
-                <tr><td>1 hora</td><td class="price-hi" style="text-align:right">R$ 20</td></tr>
-                <tr><td>4 horas</td><td class="price-hi" style="text-align:right">R$ 45</td></tr>
-                <tr><td>24h</td><td class="price-hi" style="text-align:right">R$ 70</td></tr>
-                <tr><td>2 dias</td><td class="price-hi" style="text-align:right">R$ 120</td></tr>
-                <tr><td>3 dias</td><td class="price-hi" style="text-align:right">R$ 170</td></tr>
-                <tr><td>7 dias</td><td class="price-hi" style="text-align:right">R$ 320</td></tr>
+                <tr><td>Parapente <span style="font-size:0.7rem;color:var(--text-muted);display:block">Com câmera GoPro inclusa</span></td><td class="price-hi" style="text-align:right">R$ 900</td></tr>
+                <tr><td>Asa delta</td><td class="price-hi" style="text-align:right">R$ 900</td></tr>
               </table>
             </div>
-            <p style="font-size:.7rem;color:var(--text-muted);margin-bottom:1.5rem">Cadeado incluso no valor do aluguel.</p>
+            <p style="font-size:.7rem;color:var(--text-muted);margin-bottom:1.5rem">Atividade sujeita a clima, peso, disponibilidade e confirmação da equipe. Extras opcionais no local.</p>
 
-            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20disponibilidade%20para%20aluguel%20de%20bicicleta." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar Bicicleta</a>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20saber%20sobre%20os%20voos%20de%20parapente%20e%20asa%20delta." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar voo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ ROTEIROS RIO HAVEN ═══════ -->
+  <section class="section section--light" id="roteiros">
+    <div class="container">
+      <div class="text-center anim" style="margin-bottom:3rem">
+        <span class="label">Roteiros turísticos Rio Haven</span>
+        <h2 class="section-title">Conheça praias, mirantes e pontos especiais</h2>
+        <p class="section-sub" style="margin:0 auto">Além das aventuras, a Rio Haven organiza roteiros para quem deseja conhecer os lugares mais bonitos da cidade.</p>
+      </div>
+
+      <!-- Haven Tour -->
+      <div class="exp-hero anim">
+        <img src="images/exp-praias.webp" alt="Haven Tour">
+        <div class="exp-hero__content">
+          <span class="exp-hero__tag">Passeio Oficial</span>
+          <h3 class="exp-hero__title">Haven Tour</h3>
+          <p style="margin-top:0.5rem;font-size:1.1rem;max-width:600px;opacity:0.9">O passeio oficial da Rio Haven, ideal para quem deseja conhecer a Zona Oeste com praticidade e acompanhamento.</p>
+          <div style="display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap">
+            <div style="background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);padding:1rem;border-radius:var(--r-md);flex:1;min-width:200px;">
+              <strong>Roteiro:</strong> Praia da Reserva, Barra, Recreio, Grumari, Prainha, Praia da Macumba, Mirante do Caeté e Cachoeira em Vargem Grande.
+            </div>
+            <div style="background:rgba(255,255,255,0.15);backdrop-filter:blur(10px);padding:1rem;border-radius:var(--r-md);flex:1;min-width:200px;">
+              <strong>Informações:</strong>
+              <ul style="margin:0;padding-left:1.2rem;margin-top:0.5rem">
+                <li>Horários: 09h às 12h ou 14h às 15h</li>
+                <li>A partir de R$ 99 por pessoa</li>
+                <li>Mínimo de 6 participantes</li>
+              </ul>
+            </div>
+          </div>
+          <div style="margin-top:2rem">
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20Haven%20Tour." target="_blank" rel="noopener" class="btn btn--gold">Consultar Haven Tour</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outros Roteiros -->
+      <div class="grid grid-2 anim" style="gap:2rem">
+        <div class="accom-card" style="box-shadow:var(--shadow-md)">
+          <div class="accom-card__img" style="aspect-ratio:16/9">
+            <img src="images/exp-cristo.webp" alt="Cristo Redentor" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="accom-card__body">
+            <h3 class="accom-card__name">Cristo Redentor + Pedra da Gávea + Pedra do Pontal</h3>
+            <p class="accom-card__desc">Amanhecer no Cristo e vistas espetaculares da Zona Oeste em um roteiro marcante.</p>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20o%20roteiro%20do%20Cristo." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar roteiro</a>
+          </div>
+        </div>
+        
+        <div class="accom-card" style="box-shadow:var(--shadow-md)">
+          <div class="accom-card__img" style="aspect-ratio:16/9">
+            <img src="images/exp-cachoeira.png" alt="Cachoeiras e Mirantes" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="accom-card__body">
+            <h3 class="accom-card__name">Cachoeira, Praias Selvagens e Mirante</h3>
+            <p class="accom-card__desc">Conheça o lado mais natural do Rio: Cachoeira de Vargem Grande, Grumari, Prainha, Praia do Secreto e Mirante do Caeté.</p>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20o%20passeio%20das%20Praias%20Selvagens." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Consultar passeio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ DAY USE & LAZER NA POUSADA ═══════ -->
+  <section class="section" id="day-use">
+    <div class="container">
+      
+      <!-- Day Use -->
+      <div class="grid grid-2 anim" style="align-items:center;margin-bottom:6rem;gap:4rem">
+        <div>
+          <span class="label label--gold">Day Use + Jeep Tour</span>
+          <h2 class="section-title">Um dia completo de lazer na Rio Haven</h2>
+          <p class="section-sub" style="margin-bottom:1.5rem">Para quem deseja aproveitar a estrutura da pousada sem necessariamente se hospedar, a Rio Haven possui opção de Day Use com Jeep Tour.</p>
+          
+          <ul class="feature-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Horário: 07h às 22h</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Inclui alimentação, piscina, sauna, área de lazer e Jeep Tour</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Ideal para grupos, famílias e visitantes</li>
+          </ul>
+
+          <div style="font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:2rem">
+            R$ 300 <span style="font-size:1rem;color:var(--graphite);font-weight:400">por pessoa</span>
+          </div>
+
+          <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20o%20Day%20Use." target="_blank" rel="noopener" class="btn btn--primary">
+            Consultar Day Use
+          </a>
+        </div>
+        <div style="border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-xl)">
+          <img src="images/pousada-pool.webp" alt="Day Use Rio Haven" style="width:100%;height:100%;object-fit:cover;aspect-ratio:4/3">
+        </div>
+      </div>
+
+      <hr id="lazer" style="border:none;border-top:1px solid var(--border);margin-bottom:6rem">
+
+      <!-- Diversão na Pousada -->
+      <div class="text-center anim" style="margin-bottom:3rem">
+        <span class="label">Diversão na pousada</span>
+        <h2 class="section-title">Atividades para toda a família</h2>
+        <p class="section-sub" style="margin:0 auto">A Rio Haven também oferece opções de lazer dentro da própria pousada, perfeitas para famílias, crianças, grupos e hóspedes que desejam se divertir sem sair do local.</p>
+      </div>
+
+      <div class="grid grid-3 anim" style="gap:2rem">
+        <div style="background:var(--ocean-light);padding:2rem;border-radius:var(--r-lg);">
+          <h3 style="font-size:1.25rem;color:var(--navy);margin-bottom:1.5rem">Estrutura de Lazer</h3>
+          <ul class="schedule-list">
+            <li>Piscina e Sauna</li>
+            <li>Salão de jogos</li>
+            <li>Quadra poliesportiva</li>
+            <li>Área gourmet</li>
+            <li>Campeonatos aos finais de semana</li>
+            <li>Pescaria (conforme disponibilidade)</li>
+          </ul>
+        </div>
+        
+        <div style="background:var(--white);padding:2rem;border-radius:var(--r-lg);box-shadow:var(--shadow-md);grid-column: span 2;">
+          <h3 style="font-size:1.25rem;color:var(--navy);margin-bottom:1rem">Diversão na Medida</h3>
+          <p style="color:var(--graphite);font-size:0.95rem;margin-bottom:1.5rem">Atividades leves, interativas e indicadas para toda a família.</p>
+          
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem">
+            <div style="border:1px solid var(--border);padding:1rem;border-radius:var(--r-sm)">
+              <strong>Curso Drone Amador</strong><br>
+              <span style="color:var(--text-muted);font-size:0.85rem">30 minutos</span><br>
+              <span style="color:var(--ocean);font-weight:600">R$ 150</span>
+            </div>
+            <div style="border:1px solid var(--border);padding:1rem;border-radius:var(--r-sm)">
+              <strong>Barco RC (Controle)</strong><br>
+              <span style="color:var(--text-muted);font-size:0.85rem">15 minutos</span><br>
+              <span style="color:var(--ocean);font-weight:600">R$ 35</span>
+            </div>
+            <div style="border:1px solid var(--border);padding:1rem;border-radius:var(--r-sm)">
+              <strong>Autorama RC</strong><br>
+              <span style="color:var(--text-muted);font-size:0.85rem">30 minutos</span><br>
+              <span style="color:var(--ocean);font-weight:600">R$ 40</span>
+            </div>
+          </div>
+          
+          <div style="margin-top:2rem">
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Quais%20as%20atividades%20dispon%C3%ADveis%20na%20pousada%3F" target="_blank" rel="noopener" class="btn btn--outline-ocean">Ver atividades da pousada</a>
           </div>
         </div>
       </div>
@@ -226,16 +502,118 @@
     </div>
   </section>
 
+  <!-- ═══════ PROGRAMAÇÃO FIM DE SEMANA ═══════ -->
+  <section class="section section--navy" id="programacao">
+    <div class="container">
+      <div class="text-center anim" style="margin-bottom:3rem">
+        <span class="label label--gold">Programação</span>
+        <h2 class="section-title section-title--white">Fim de semana completo na Rio Haven</h2>
+        <p class="section-sub section-sub--white" style="margin:0 auto">A programação da Rio Haven foi pensada para unir hospedagem, lazer, descanso, gastronomia e experiências.</p>
+      </div>
+
+      <div class="grid grid-2 anim" style="gap:2rem;margin-bottom:3rem">
+        <!-- Sexta-feira -->
+        <div class="schedule-day">
+          <h3 class="schedule-day__title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            Sexta-feira
+          </h3>
+          <ul class="schedule-list">
+            <li>Recepção dos hóspedes</li>
+            <li>Área gourmet liberada</li>
+            <li>Música ambiente</li>
+            <li>Sauna e piscina disponíveis</li>
+            <li>Noite livre para descanso e integração</li>
+          </ul>
+        </div>
+        
+        <!-- Sábado -->
+        <div class="schedule-day">
+          <h3 class="schedule-day__title" style="color:var(--gold)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            Sábado
+          </h3>
+          <ul class="schedule-list">
+            <li>Café da manhã completo</li>
+            <li>Futebol na quadra, Haven Tour ou Quadriciclo</li>
+            <li>Almoço especial</li>
+            <li>Campeonatos (Totó, sinuca, ping pong, autorama, baralho, UNO, barco RC, etc.)</li>
+            <li>Live DJ na piscina & Sauna liberada até 21h</li>
+            <li>Rodízio de caldos (Encerramento do som às 22h)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="text-center anim">
+        <p style="color:rgba(255,255,255,0.7);font-size:0.85rem;margin-bottom:1.5rem">A programação pode variar conforme data, grupo, clima e disponibilidade da equipe.</p>
+        <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20a%20programa%C3%A7%C3%A3o%20do%20fim%20de%20semana." target="_blank" rel="noopener" class="btn btn--primary">
+          Consultar programação do fim de semana
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CASAIS & FAMÍLIAS ═══════ -->
+  <section class="section" id="casais">
+    <div class="container">
+      <div class="grid grid-2 anim" style="gap:2rem">
+        <!-- Casais -->
+        <div class="accom-card" style="box-shadow:var(--shadow-lg)">
+          <div class="accom-card__img" style="aspect-ratio:16/9">
+            <img src="images/exp-casal.png" alt="Casais" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <span class="accom-card__badge" style="background:var(--gold)">Para Casais</span>
+          </div>
+          <div class="accom-card__body">
+            <h3 class="accom-card__name">Momentos especiais para viver a dois</h3>
+            <p class="accom-card__desc">Ambiente perfeito para descanso, lazer e experiências inesquecíveis. Combine hospedagem, piscina, sauna e passeios especiais pelo Rio.</p>
+            <ul style="padding-left:1.2rem;color:var(--graphite);font-size:0.9rem;margin-bottom:1.5rem">
+              <li>Suíte privativa</li>
+              <li>Passeio de lancha, Parapente, Quadriciclo</li>
+              <li>Roteiros turísticos e Passeio de conversível (sujeito a disponibilidade)</li>
+            </ul>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20montar%20uma%20experi%C3%AAncia%20para%20casal." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Montar experiência para casal</a>
+          </div>
+        </div>
+
+        <!-- Famílias -->
+        <div class="accom-card" id="familia" style="box-shadow:var(--shadow-lg)">
+          <div class="accom-card__img" style="aspect-ratio:16/9">
+            <img src="images/exp-familia.png" alt="Famílias" loading="lazy" style="width:100%;height:100%;object-fit:cover">
+            <span class="accom-card__badge" style="background:var(--ocean);color:white">Para Famílias</span>
+          </div>
+          <div class="accom-card__body">
+            <h3 class="accom-card__name">Lazer, segurança e diversão para todos</h3>
+            <p class="accom-card__desc">Atividades leves, interativas e adequadas para momentos de diversão em grupo e com crianças.</p>
+            <ul style="padding-left:1.2rem;color:var(--graphite);font-size:0.9rem;margin-bottom:1.5rem">
+              <li>Piscina, Salão de jogos e Quadra</li>
+              <li>Autorama RC, Barco RC e Drone</li>
+              <li>Bicicletas e Programação de fim de semana</li>
+            </ul>
+            <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20ver%20op%C3%A7%C3%B5es%20para%20fam%C3%ADlia." target="_blank" rel="noopener" class="btn btn--outline-ocean btn--full">Ver opções para família</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════ CALL TO ACTION FINAL ═══════ -->
-  <section class="section section--sand" style="text-align:center">
-    <div class="container anim">
-      <span class="label">Personalize</span>
-      <h2 class="section-title">Vai se hospedar conosco?</h2>
-      <p class="section-sub" style="margin:0 auto 2rem">Combine sua estadia com experiências especiais pelo Rio e receba atendimento personalizado pelo WhatsApp.</p>
-      <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20montar%20um%20pacote%20de%20hospedagem%20com%20experi%C3%AAncias%20na%20Rio%20Haven." target="_blank" rel="noopener" class="btn btn--primary btn--lg">
-        Montar minha experiência
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+  <section class="cta-section" id="cta-final">
+    <div class="cta-section__bg"></div>
+    <div class="cta-section__glow"></div>
+    <div class="container cta-section__content anim">
+      <span class="label label--gold">Personalize sua viagem</span>
+      <h2 class="section-title section-title--white" style="font-size:clamp(1.8rem,4vw,2.8rem)">Monte sua experiência personalizada</h2>
+      <p class="section-sub section-sub--white" style="margin:0 auto 2rem">Quer se hospedar, descansar, curtir a pousada e ainda viver experiências pelo Rio? Fale com a Rio Haven pelo WhatsApp e monte um roteiro personalizado para sua estadia, passeio, day use, evento, casal, família ou grupo.</p>
+      
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/5521978730606?text=Ol%C3%A1!%20Gostaria%20de%20montar%20minha%20experi%C3%AAncia%20personalizada%20na%20Rio%20Haven." target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.75.75 0 0 0 .917.918l4.462-1.494A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 0 1-5.39-1.582l-.386-.235-2.661.89.89-2.659-.256-.406A9.935 9.935 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Montar minha experiência no WhatsApp
+        </a>
+        <a href="acomodacoes.html" class="btn btn--outline-white btn--lg">
+          Ver acomodações
+        </a>
+      </div>
     </div>
   </section>
 

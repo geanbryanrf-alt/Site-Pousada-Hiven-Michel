@@ -25,8 +25,8 @@ export class AppFooter extends HTMLElement {
               <h4 class="footer__col-title">Navegação</h4>
               <div class="footer__links">
                 <a href="index.html" class="footer__link">Início</a>
-                <a href="acomodacoes.html" class="footer__link">Acomodações</a>
                 <a href="experiencias.html" class="footer__link">Experiências</a>
+                <a href="fotos.html" class="footer__link">Fotos</a>
                 <a href="eventos-riocentro.html" class="footer__link">Eventos</a>
               </div>
             </div>
