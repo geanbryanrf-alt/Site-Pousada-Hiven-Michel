@@ -31,93 +31,127 @@
     </div>
   </section>
 
-  <!-- ═══════ GALERIA ═══════ -->
-  <section class="section" id="galeria">
+  <!-- ═══════ GALERIA POR CATEGORIAS ═══════ -->
+  <section class="section section--light" id="galeria" style="padding-top: 2rem;">
     <div class="container">
-      <div class="accom-carousel photo-carousel anim" aria-label="Carrossel de fotos da Rio Haven">
-        <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="accom-carousel__viewport">
-          <div class="accom-carousel__track">
-            <button class="accom-carousel__slide active" type="button" data-gallery="fotos" data-index="0">
-              <img src="images/momento-1.webp" alt="Foto da Rio Haven 1" loading="lazy">
-              <span>Foto 1 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="1">
-              <img src="images/momento-2.webp" alt="Foto da Rio Haven 2" loading="lazy">
-              <span>Foto 2 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="2">
-              <img src="images/momento-3.webp" alt="Foto da Rio Haven 3" loading="lazy">
-              <span>Foto 3 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="3">
-              <img src="images/momento-4.webp" alt="Foto da Rio Haven 4" loading="lazy">
-              <span>Foto 4 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="4">
-              <img src="images/momento-5.webp" alt="Foto da Rio Haven 5" loading="lazy">
-              <span>Foto 5 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="5">
-              <img src="images/momento-6.webp" alt="Foto da Rio Haven 6" loading="lazy">
-              <span>Foto 6 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="6">
-              <img src="images/momento-7.webp" alt="Foto da Rio Haven 7" loading="lazy">
-              <span>Foto 7 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="7">
-              <img src="images/momento-8.webp" alt="Foto da Rio Haven 8" loading="lazy">
-              <span>Foto 8 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="8">
-              <img src="images/momento-9.webp" alt="Foto da Rio Haven 9" loading="lazy">
-              <span>Foto 9 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="9">
-              <img src="images/momento-10.webp" alt="Foto da Rio Haven 10" loading="lazy">
-              <span>Foto 10 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="10">
-              <img src="images/momento-11.webp" alt="Foto da Rio Haven 11" loading="lazy">
-              <span>Foto 11 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="11">
-              <img src="images/momento-12.webp" alt="Foto da Rio Haven 12" loading="lazy">
-              <span>Foto 12 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="12">
-              <img src="images/momento-13.webp" alt="Foto da Rio Haven 13" loading="lazy">
-              <span>Foto 13 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="13">
-              <img src="images/momento-14.webp" alt="Foto da Rio Haven 14" loading="lazy">
-              <span>Foto 14 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="14">
-              <img src="images/momento-15.webp" alt="Foto da Rio Haven 15" loading="lazy">
-              <span>Foto 15 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="15">
-              <img src="images/momento-16.webp" alt="Foto da Rio Haven 16" loading="lazy">
-              <span>Foto 16 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="16">
-              <img src="images/momento-17.webp" alt="Foto da Rio Haven 17" loading="lazy">
-              <span>Foto 17 de 18</span>
-            </button>
-            <button class="accom-carousel__slide" type="button" data-gallery="fotos" data-index="17">
-              <img src="images/momento-18.webp" alt="Foto da Rio Haven 18" loading="lazy">
-              <span>Foto 18 de 18</span>
-            </button>
-          </div>
-        </div>
-        <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-        <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+      <div class="photo-tour-layout">
+        <aside class="photo-tour-sidebar" aria-label="Categorias da galeria">
+          <nav class="photo-tour-nav">
+            <a class="photo-tour-nav-link active" href="#visao-geral">Ambientes</a>
+            <a class="photo-tour-nav-link" href="#acomodacoes">Acomodações</a>
+            <a class="photo-tour-nav-link" href="#lazer">Lazer e piscina</a>
+            <a class="photo-tour-nav-link" href="#beliche-misto">Beliche misto</a>
+          </nav>
+        </aside>
+
+        <div class="photo-tour-content">
+          <section class="photo-tour-section anim" id="visao-geral">
+            <h2 class="photo-tour-section-title">Áreas comuns e serviços</h2>
+            <div class="accom-carousel photo-carousel stage-carousel" aria-label="Carrossel Áreas comuns e serviços">
+              <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="accom-carousel__viewport">
+                <div class="accom-carousel__track">
+                  <button class="accom-carousel__slide active" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-06.webp" alt="Café da manhã" loading="lazy"><span>Café da manhã</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-04.webp" alt="Corredor interno" loading="lazy"><span>Corredor interno</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-13.webp" alt="Detalhe interno" loading="lazy"><span>Detalhe interno</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-14.webp" alt="Fachada da Rio Haven" loading="lazy"><span>Fachada</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-17.webp" alt="Área de serviço" loading="lazy"><span>Área de serviço</span></button>
+                </div>
+              </div>
+              <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+            </div>
+          </section>
+
+          <section class="photo-tour-section anim" id="acomodacoes">
+            <h2 class="photo-tour-section-title">Acomodações</h2>
+            <div class="accom-carousel photo-carousel stage-carousel" aria-label="Carrossel Acomodações">
+              <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="accom-carousel__viewport">
+                <div class="accom-carousel__track">
+                  <button class="accom-carousel__slide active" type="button" data-gallery="tour"><img src="img pousada-real/acomodacao-suite-privativa.webp" alt="Suíte privativa" loading="lazy"><span>Suíte privativa</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="img pousada-real/acomodacao-loft.webp" alt="Loft" loading="lazy"><span>Loft</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="img pousada-real/acomodacao-economica.webp" alt="Quarto econômico" loading="lazy"><span>Quarto econômico</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-06.webp" alt="Quarto com banheiro" loading="lazy"><span>Quarto com banheiro</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-07.webp" alt="Banheiro da acomodação" loading="lazy"><span>Banheiro da acomodação</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-02.webp" alt="Banheiro compartilhado" loading="lazy"><span>Banheiro compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-03.webp" alt="Banheiro compartilhado" loading="lazy"><span>Banheiro compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-05.webp" alt="Banheiro compartilhado" loading="lazy"><span>Banheiro compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-19.webp" alt="Banheiro da acomodação" loading="lazy"><span>Banheiro da acomodação</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-20.webp" alt="Quarto privativo" loading="lazy"><span>Quarto privativo</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-26.webp" alt="Quarto privativo" loading="lazy"><span>Quarto privativo</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-27.webp" alt="Quarto privativo" loading="lazy"><span>Quarto privativo</span></button>
+                </div>
+              </div>
+              <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+            </div>
+          </section>
+
+          <section class="photo-tour-section anim" id="lazer">
+            <h2 class="photo-tour-section-title">Lazer e piscina</h2>
+            <div class="accom-carousel photo-carousel stage-carousel" aria-label="Carrossel Lazer e piscina">
+              <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="accom-carousel__viewport">
+                <div class="accom-carousel__track">
+                  <button class="accom-carousel__slide active" type="button" data-gallery="tour"><img src="img pousada-real/pousada-piscina-real.webp" alt="Piscina da pousada" loading="lazy"><span>Piscina da pousada</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-07.webp" alt="Área externa com mesas" loading="lazy"><span>Área externa com mesas</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-08.webp" alt="Quadra da pousada" loading="lazy"><span>Quadra</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-09.webp" alt="Área de jogos" loading="lazy"><span>Área de jogos</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-10.webp" alt="Piscina iluminada" loading="lazy"><span>Piscina iluminada</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-15.webp" alt="Piscina e área externa" loading="lazy"><span>Piscina e área externa</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-22.webp" alt="Piscina à noite" loading="lazy"><span>Piscina à noite</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-23.webp" alt="Quadra da pousada" loading="lazy"><span>Quadra</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-24.webp" alt="Piscina" loading="lazy"><span>Piscina</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-28.webp" alt="Quadra ao pôr do sol" loading="lazy"><span>Quadra ao pôr do sol</span></button>
+                </div>
+              </div>
+              <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+            </div>
+          </section>
+
+          <section class="photo-tour-section anim" id="beliche-misto">
+            <h2 class="photo-tour-section-title">Cama em beliche compartilhado misto</h2>
+            <div class="accom-carousel photo-carousel stage-carousel" aria-label="Carrossel Cama em beliche compartilhado misto">
+              <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="accom-carousel__viewport">
+                <div class="accom-carousel__track">
+                  <button class="accom-carousel__slide active" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-01.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-02.webp" alt="Quarto compartilhado misto" loading="lazy"><span>Quarto compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-03.webp" alt="Quarto compartilhado misto" loading="lazy"><span>Quarto compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-04.webp" alt="Quarto compartilhado misto" loading="lazy"><span>Quarto compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/ambientes/pousada-05.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-01.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-11.webp" alt="Detalhe do quarto compartilhado" loading="lazy"><span>Detalhe do quarto</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-12.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-16.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-18.webp" alt="Cama em beliche compartilhado misto" loading="lazy"><span>Beliche compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-21.webp" alt="Quarto compartilhado misto" loading="lazy"><span>Quarto compartilhado</span></button>
+                  <button class="accom-carousel__slide" type="button" data-gallery="tour"><img src="images/galeria/beliche-misto/beliche-misto-25.webp" alt="Quarto compartilhado misto" loading="lazy"><span>Quarto compartilhado</span></button>
+                </div>
+              </div>
+              <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+              <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+            </div>
+          </section>
+        </div>        </div>
       </div>
     </div>
   </section>

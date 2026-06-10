@@ -270,11 +270,12 @@ h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02
 .accom-carousel__nav svg{width:20px;height:20px}
 .accom-carousel__nav--prev{left:.6rem}
 .accom-carousel__nav--next{right:.6rem}
-.accom-carousel__dots{display:flex;gap:.4rem;justify-content:center;margin-top:.875rem}
+.accom-carousel__dots{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;margin-top:.875rem}
 .accom-carousel__dot{width:8px;height:8px;border:0;border-radius:var(--r-full);background:rgba(8,29,48,.22);cursor:pointer;padding:0;transition:var(--ease)}
 .accom-carousel__dot.active{width:26px;background:var(--ocean)}
 .photo-carousel .accom-carousel__slide img{object-fit:contain;background:var(--navy)}
 .photo-carousel .accom-carousel__slide::after{background:linear-gradient(to top,rgba(8,29,48,.45),rgba(8,29,48,0) 32%)}
+.stage-carousel{margin:0 0 2rem;max-width:none}
 .acom-page-gallery .filter-tabs,
 .acom-page-gallery #acomodacoes-grid{display:none}
 .acom-page-gallery .info-banner{max-width:1040px;margin-left:auto;margin-right:auto}
@@ -659,4 +660,168 @@ h1,h2,h3,h4{font-family:var(--font-display);line-height:1.15;letter-spacing:-.02
    ============================================================================= */
 @media(max-width:1099px){
   body{padding-bottom:68px}
+}
+
+/* =============================================================================
+   PHOTO TOUR (Airbnb Style)
+   ============================================================================= */
+.photo-tour-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.photo-tour-sidebar {
+  position: sticky;
+  top: 60px; /* Below scrolled header */
+  z-index: 90;
+  background: #f7fafc; /* Match section--light */
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  margin: 0 -1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  /* Hide scrollbar for cleaner look */
+  scrollbar-width: none;
+}
+.photo-tour-sidebar::-webkit-scrollbar {
+  display: none;
+}
+.photo-tour-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+.photo-tour-nav-link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding-bottom: 0.5rem;
+  position: relative;
+  transition: var(--ease);
+}
+.photo-tour-nav-link:hover {
+  color: var(--navy);
+}
+.photo-tour-nav-link.active {
+  color: var(--navy);
+}
+.photo-tour-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--navy);
+}
+.photo-tour-content {
+  flex: 1;
+}
+.photo-tour-section {
+  margin-bottom: 4rem;
+  scroll-margin-top: 140px; /* Offset for sticky header and nav on mobile */
+}
+.photo-tour-section-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 1.5rem;
+}
+.photo-tour-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.photo-tour-item {
+  position: relative;
+  display: block;
+  border: 0;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+  background: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+.photo-tour-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+.photo-tour-item:hover img {
+  transform: scale(1.03);
+  filter: brightness(0.9);
+}
+.photo-tour-item span {
+  position: absolute;
+  left: 0.65rem;
+  right: 0.65rem;
+  bottom: 0.65rem;
+  z-index: 1;
+  width: max-content;
+  max-width: calc(100% - 1.3rem);
+  background: rgba(8,29,48,.78);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.25;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--r-full);
+  backdrop-filter: blur(5px);
+  white-space: normal;
+}
+.pt-item-large {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
+}
+
+@media(max-width: 520px) {
+  .photo-tour-grid {
+    grid-template-columns: 1fr;
+  }
+  .pt-item-large {
+    grid-column: auto;
+    aspect-ratio: 4/3;
+  }
+}
+
+@media(min-width: 900px) {
+  .photo-tour-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 4rem;
+  }
+  .photo-tour-sidebar {
+    position: sticky;
+    top: 100px;
+    width: 240px;
+    flex-shrink: 0;
+    border-bottom: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: visible;
+    white-space: normal;
+    background: transparent;
+  }
+  .photo-tour-nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .photo-tour-nav-link {
+    padding-bottom: 0;
+    padding-left: 1rem;
+    border-left: 2px solid transparent;
+  }
+  .photo-tour-nav-link.active::after {
+    display: none;
+  }
+  .photo-tour-nav-link.active {
+    border-left-color: var(--navy);
+  }
+  .photo-tour-section {
+    scroll-margin-top: 100px; /* Offset for desktop sticky header */
+  }
 }

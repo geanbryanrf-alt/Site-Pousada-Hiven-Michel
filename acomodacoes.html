@@ -3,21 +3,126 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fotos | Rio Haven Pousada Hostel</title>
-  <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="0; url=fotos.html">
-  <link rel="canonical" href="fotos.html">
+  <title>Acomodações | Rio Haven Pousada Hostel</title>
+  <meta name="description" content="Conheça nossas acomodações: suítes privativas, loft, quartos econômicos e hospedagem compartilhada.">
+  <meta property="og:title" content="Acomodações | Rio Haven Pousada Hostel">
+  <meta property="og:description" content="Conheça nossas acomodações: suítes privativas, loft, quartos econômicos e hospedagem compartilhada.">
+  <meta property="og:type" content="website">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/logo-rio-haven.png" type="image/png">
 </head>
-<body>
-  <section class="section">
-    <div class="container text-center">
-      <span class="label">Fotos</span>
-      <h1 class="section-title">Redirecionando para a galeria de fotos</h1>
-      <p class="section-sub" style="margin:0 auto 1.5rem">Você será levado para a galeria de fotos da Rio Haven.</p>
-      <a href="fotos.html" class="btn btn--primary">Ver fotos</a>
+<body class="acom-page-gallery">
+
+  <!-- ═══════ HEADER & MENU ═══════ -->
+  <app-header></app-header>
+  <app-mobile-menu></app-mobile-menu>
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="page-hero" style="padding-bottom: 2rem;">
+    <div class="page-hero__bg" style="background: linear-gradient(to bottom, var(--navy) 0%, #0d2d47 70%, #f7fafc 100%);"></div>
+    <div class="container page-hero__content anim">
+      <h1 class="page-hero__title" style="font-size: clamp(2.2rem, 4vw, 3.5rem); max-width: 700px; line-height: 1.1;">Acomodações para diferentes formas de viver o Rio</h1>
+      <p class="page-hero__subtitle" style="font-size: 1.05rem; max-width: 600px; margin-top: 1rem; color: rgba(255,255,255,0.9);">Escolha entre suítes privativas, loft, quartos econômicos, opções com garagem e hospedagem compartilhada.</p>
     </div>
   </section>
+
+  <!-- ═══════ CAROUSEL ═══════ -->
+  <section class="section section--light" style="padding-top: 0;">
+    <div class="container">
+      <div class="accom-carousel anim" aria-label="Carrossel de Acomodações">
+        <button class="accom-carousel__nav accom-carousel__nav--prev" type="button" aria-label="Foto anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="accom-carousel__viewport">
+          <div class="accom-carousel__track">
+            <button class="accom-carousel__slide active" type="button" data-gallery="acomodacoes" data-index="0">
+              <img src="img pousada-real/acomodacao-economica.webp" alt="Acomodação econômica" loading="lazy">
+              <span>Acomodação econômica</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="1">
+              <img src="img pousada-real/acomodacao-loft.webp" alt="Loft" loading="lazy">
+              <span>Loft</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="2">
+              <img src="img pousada-real/acomodacao-suite-privativa.webp" alt="Suíte privativa" loading="lazy">
+              <span>Suíte privativa</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="3">
+              <img src="img pousada-real/pousada-piscina-real.webp" alt="Área da piscina" loading="lazy">
+              <span>Área da piscina</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="4">
+              <img src="images/galeria/ambientes/pousada-01.webp" alt="Cama em beliche compartilhado misto" loading="lazy">
+              <span>Beliche compartilhado misto</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="5">
+              <img src="images/galeria/ambientes/pousada-02.webp" alt="Quarto compartilhado misto" loading="lazy">
+              <span>Quarto compartilhado misto</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="6">
+              <img src="images/galeria/ambientes/pousada-03.webp" alt="Detalhe do beliche compartilhado" loading="lazy">
+              <span>Detalhe do beliche</span>
+            </button>
+            <button class="accom-carousel__slide" type="button" data-gallery="acomodacoes" data-index="7">
+              <img src="images/galeria/beliche-misto/beliche-misto-21.webp" alt="Ambiente do quarto compartilhado" loading="lazy">
+              <span>Ambiente compartilhado</span>
+            </button>
+          </div>
+        </div>
+        <button class="accom-carousel__nav accom-carousel__nav--next" type="button" aria-label="Próxima foto">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="accom-carousel__dots" aria-label="Selecionar foto"></div>
+      </div>
+
+      <div class="info-banner anim" style="max-width:1040px;margin:2.5rem auto 0; background: transparent; border: 1px solid var(--border)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--ocean)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <p><strong>Atenção:</strong> As fotos de acomodações são uma prévia dos espaços da Rio Haven e podem ser atualizadas pela equipe.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--light" style="padding-top: 0;">
+    <div class="container">
+      <div class="text-center anim" style="margin-bottom: 1.5rem;">
+        <h2 class="section-title">Beliche compartilhado misto</h2>
+        <p class="section-sub" style="margin:0 auto">Uma opção prática para quem busca hospedagem compartilhada com conforto e boa localização.</p>
+      </div>
+
+      <div class="photo-tour-grid accom-shared-grid anim" style="max-width:1040px;margin:0 auto;">
+        <button class="photo-tour-item pt-item-large" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/ambientes/pousada-01.webp" alt="Beliche compartilhado misto" loading="lazy">
+          <span>Beliche compartilhado misto</span>
+        </button>
+        <button class="photo-tour-item" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/ambientes/pousada-02.webp" alt="Detalhe do quarto compartilhado" loading="lazy">
+          <span>Detalhe do quarto</span>
+        </button>
+        <button class="photo-tour-item" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/ambientes/pousada-03.webp" alt="Área do beliche misto" loading="lazy">
+          <span>Área do beliche</span>
+        </button>
+        <button class="photo-tour-item" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/ambientes/pousada-04.webp" alt="Quarto com beliche compartilhado" loading="lazy">
+          <span>Quarto compartilhado</span>
+        </button>
+        <button class="photo-tour-item" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/ambientes/pousada-05.webp" alt="Ambiente do quarto compartilhado" loading="lazy">
+          <span>Ambiente do quarto</span>
+        </button>
+        <button class="photo-tour-item" type="button" data-gallery="acomodacoes-extra">
+          <img src="images/galeria/beliche-misto/beliche-misto-21.webp" alt="Vista do quarto compartilhado misto" loading="lazy">
+          <span>Vista do quarto</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ COMPONENTES FIXOS ═══════ -->
+  <app-wa-float></app-wa-float>
+  <app-mobile-cta></app-mobile-cta>
+  <app-footer></app-footer>
+
+  <script type="module" src="/js/main.js"></script>
 </body>
 </html>
