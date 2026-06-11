@@ -104,25 +104,44 @@ function initFilter() {
 
 // ── PHOTO GALLERY ─────────────────────────────────────────────────────
 function initGallery() {
-  const items = [...document.querySelectorAll('[data-gallery]')]
-    .filter(item => item.offsetParent !== null);
-  if (!items.length) return;
+  const allItems = [...document.querySelectorAll('[data-gallery]')];
+  const items = allItems
+    .filter(item => !item.hasAttribute('data-gallery-source') && item.offsetParent !== null);
+  if (!allItems.length) return;
 
-  const photos = [];
-  const seen = new Set();
-  items.forEach(item => {
+  const galleries = new Map();
+  const itemTargets = new WeakMap();
+
+  allItems.forEach(item => {
+    const group = item.dataset.gallery || 'default';
     const img = item.querySelector('img');
-    const src = img?.getAttribute('src') || '';
-    if (!src || seen.has(src)) return;
-    seen.add(src);
-    photos.push({
-      src: img?.getAttribute('src') || '',
-      alt: img?.getAttribute('alt') || '',
-      caption: item.querySelector('span')?.textContent || img?.getAttribute('alt') || ''
+    const fallbackSrc = img?.getAttribute('src') || '';
+    const label = item.querySelector('span')?.textContent || img?.getAttribute('alt') || '';
+    const sources = (item.dataset.galleryImages || '')
+      .split('|')
+      .map(src => src.trim())
+      .filter(Boolean);
+
+    if (!sources.length && fallbackSrc) sources.push(fallbackSrc);
+    if (!sources.length) return;
+
+    if (!galleries.has(group)) galleries.set(group, []);
+    const photos = galleries.get(group);
+    const startIndex = photos.length;
+
+    sources.forEach((src, sourceIndex) => {
+      if (photos.some(photo => photo.src === src)) return;
+      photos.push({
+        src,
+        alt: img?.getAttribute('alt') || label,
+        caption: sources.length > 1 ? `${label} - foto ${sourceIndex + 1}` : label
+      });
     });
+
+    itemTargets.set(item, { group, index: startIndex });
   });
 
-  if (!photos.length) return;
+  if (!galleries.size) return;
 
   const lightbox = document.createElement('div');
   lightbox.className = 'gallery-lightbox';
@@ -143,16 +162,21 @@ function initGallery() {
 
   const photo = lightbox.querySelector('img');
   const caption = lightbox.querySelector('.gallery-lightbox__caption');
+  let activePhotos = [];
   let current = 0;
 
   const render = () => {
-    photo.src = photos[current].src;
-    photo.alt = photos[current].alt;
-    caption.textContent = `${photos[current].caption} (${current + 1}/${photos.length})`;
+    const currentPhoto = activePhotos[current];
+    if (!currentPhoto) return;
+    photo.src = currentPhoto.src;
+    photo.alt = currentPhoto.alt;
+    caption.textContent = `${currentPhoto.caption} (${current + 1}/${activePhotos.length})`;
   };
 
-  const open = index => {
-    current = index;
+  const open = (group, index) => {
+    activePhotos = galleries.get(group) || [];
+    if (!activePhotos.length) return;
+    current = Math.min(Math.max(index, 0), activePhotos.length - 1);
     render();
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -164,15 +188,16 @@ function initGallery() {
   };
 
   const move = step => {
-    current = (current + step + photos.length) % photos.length;
+    if (!activePhotos.length) return;
+    current = (current + step + activePhotos.length) % activePhotos.length;
     render();
   };
 
-  items.forEach((item, index) => {
+  items.forEach(item => {
     item.addEventListener('click', () => {
-      const src = item.querySelector('img')?.getAttribute('src') || '';
-      const photoIndex = photos.findIndex(photo => photo.src === src);
-      open(photoIndex >= 0 ? photoIndex : Number(item.dataset.index || index));
+      const target = itemTargets.get(item);
+      if (!target) return;
+      open(target.group, target.index);
     });
   });
 
