@@ -143,6 +143,12 @@ function initGallery() {
 
   if (!galleries.size) return;
 
+  items.forEach(item => {
+    if (itemTargets.has(item)) return;
+    const group = item.dataset.gallery || 'default';
+    if (galleries.has(group)) itemTargets.set(item, { group, index: 0 });
+  });
+
   const lightbox = document.createElement('div');
   lightbox.className = 'gallery-lightbox';
   lightbox.setAttribute('role', 'dialog');
